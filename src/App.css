@@ -2,30 +2,42 @@
   font-size: 10px;
 }
 
+body {
+  position: relative;
+  background-color: burlywood;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
 .App {
+  overflow-x: hidden;
+
   width: 100vw;
   height: 100vh;
 
-  background: burlywood;
   font-size: 1.6rem;
-
-  display: grid;
-  grid-template-columns: 18% auto;
-  grid-template-rows: 8% auto;
 }
 
 /************ HEADER ****************/
 
 .Header {
   background: indianred;
-
-  position: sticky;
-  grid-column: 1/-1;
+  position: fixed;
+  top: 0;
+  z-index: 1001;
+  width: 100vw;
+  height: 5rem;
 
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 10px;
+}
+
+.Header .logo,
+.cart {
+  margin: 0 10px;
 }
 
 .Header input {
@@ -35,14 +47,51 @@
   border-radius: 10px;
 }
 
+.Header .cart {
+  position: relative;
+}
+
+.Header .cartIcon {
+  font-size: 2.8rem;
+  color: #fff;
+  text-decoration: none;
+}
+
+.Header .cart span {
+  color: #fff;
+  top: 55%;
+  left: 50%;
+  transform: translate(-140%, -50%);
+
+  width: 4rem;
+  max-width: 4rem;
+  height: 2rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 100px;
+  font-size: 2rem;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.3);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
 /************* SIDE-MENU **************/
 
 .SideMenu {
-  background: cadetblue;
+  position: fixed;
+  z-index: 1001;
+  margin-top: 5rem;
+
+  background: salmon;
 
   height: 80%;
+  width: 12%;
+  min-width: 163px;
   border-bottom-right-radius: 15px;
-  position: sticky;
 
   display: flex;
   flex-direction: column;
@@ -50,32 +99,137 @@
   justify-content: space-evenly;
   padding: 0 0 0 10px;
   gap: 10px;
+
+  opacity: 100;
+  box-shadow: -2px 7px 4px 0px rgba(0, 0, 0, 0.12);
 }
 
 .SideMenu section {
+  transition: all 0.3s;
   width: 100%;
   height: 100%;
   border-bottom-right-radius: 15px;
-  background-color: salmon;
+}
+
+.SideMenu .toggleMenu > span {
+  display: none;
+}
+
+.toggleMenu {
+  opacity: 100;
 }
 
 /**************** CONTENT *************/
 
 .Content {
-  background: burlywood;
+  margin-top: 6rem;
+  margin-left: 16rem;
 }
 
 .Books {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(100px, 160px));
+  grid-template-columns: repeat(auto-fill, minmax(140px, 175px));
   grid-template-rows: auto;
-  gap: 10px;
+  /* gap: 10px; */
 }
 
 .Books li {
   list-style: none;
   height: 18rem;
   background-color: seagreen;
+}
+
+.Book {
+  background: lightcoral;
+  border: 1px solid burlywood;
+  border-radius: 10px;
+  overflow: hidden;
+  min-width: 100px;
+  max-width: 160px;
+  height: max-content;
+  position: relative;
+}
+
+.Book img {
+  width: 100%;
+  height: 215px;
+}
+
+.Book span {
+  color: #222;
+  margin-left: 5px;
+  text-overflow: ellipsis;
+}
+
+/* title */
+.Book span:nth-child(3) {
+  font-weight: 500;
+}
+/* author */
+.Book span:nth-child(5) {
+  font-size: 1.2rem;
+}
+/* chapters */
+.Book span:nth-child(7) {
+  font-size: 1.2rem;
+}
+
+.Book .addToCart {
+  width: 40px;
+  height: 30px;
+  position: absolute;
+  z-index: 103;
+  background: salmon;
+  border: none;
+  color: #fff;
+  font-size: 2rem;
+  border-radius: 5px;
+
+  right: 5px;
+  top: 5px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Book .addToCart:hover {
+  transform-origin: bottom center;
+  animation: shake 0.3s;
+}
+
+@keyframes shake {
+  0% {
+    transform: rotate(0deg);
+  }
+  30% {
+    transform: rotate(-5deg);
+  }
+  60% {
+    transform: rotate(5deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+.Book .addToCart:active {
+  background: rgb(244, 98, 82);
+  transform: scale(0.95);
+}
+
+.Book .QuantityInput {
+  display: flex;
+}
+
+.QuantityInput input {
+  width: 100%;
+  height: 20px;
+  border: none;
+}
+
+.QuantityInput button {
+  border: none;
 }
 
 /************ CART ************/
@@ -86,38 +240,129 @@
   width: 100vw;
   height: 100vh;
   display: grid;
-  grid-template-columns: 15% auto 15%;
+  grid-template-columns: 25% auto 25%;
   grid-template-rows: 7% auto;
 }
 
 .Cart {
   display: flex;
-  background: green;
   grid-column: 2;
 }
 
 .BookList {
-  background: red;
+  margin-top: 6rem;
   width: 100%;
 
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 5px;
+}
+
+.BookListItem {
+  /* overflow: hidden; */
+  width: 100%;
+  border-bottom: 2px solid darksalmon;
+
+  border-radius: 5px;
+
+  display: grid;
+  grid-template-columns: auto 75% auto;
+  gap: 10px;
+
+  position: relative;
+}
+
+.BookListItem .cover {
+  width: 70px;
+  height: 100%;
+  background-color: #ddd;
+  border-radius: 5px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.BookListItem .info {
+  margin-top: 5px;
+  display: flex;
+  flex-direction: column;
+}
+
+.BookListItem .info .title {
+  width: 80%;
+  color: rgb(236, 74, 56);
+}
+.BookListItem .info .author {
+  font-size: 1.3rem;
+  color: #444;
+}
+.BookListItem .pricing {
+  position: absolute;
+  right: 2%;
+  top: 50%;
+  transform: translateY(-50%);
+
+  width: max-content;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.BookListItem .pricing .price {
+  font-size: 1.6rem;
+  color: crimson;
+  font-weight: 600;
+}
+
+.BookListItem button {
+  border: none;
+  font-size: 1.1rem;
+  border-radius: 5px;
+  color: rgb(236, 74, 56);
+  border: 1px solid rgb(226, 165, 159);
+
+  transition: all 0.15s;
+}
+
+.BookListItem button:active {
+  border: 1px solid crimson;
+  color: crimson;
 }
 
 .Proceed {
   grid-column: 3;
-  background-color: brown;
+  grid-row: 2;
 
+  height: 70vh !important;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
 
 .Proceed button {
+  border-radius: 10px;
+  background: crimson;
+  color: #fff;
+}
+
+.Proceed button:nth-child(1) {
+  background: yellowgreen;
+  color: #222;
+  font-weight: 500;
+}
+
+.Proceed button:active {
+  filter: brightness(0.9);
+}
+
+.Proceed button {
   border: none;
   margin: 1rem;
-  padding: 10px;
+  padding: 5px 10px;
   font-size: 1.5rem;
 }
 
@@ -155,9 +400,6 @@
   font-size: 5rem;
 }
 
-.coupon {
-}
-
 .buttons {
   align-self: flex-end;
   margin-right: 10px;
@@ -166,4 +408,136 @@
 .buttons button {
   border: none;
   padding: 10px;
+}
+
+@media screen and (max-width: 400px) {
+  :root {
+    font-size: 8px;
+  }
+
+  body {
+    overflow: auto;
+  }
+
+  .toggleMenu {
+    visibility: visible;
+    opacity: 1;
+    position: absolute;
+    color: #fff;
+    font-size: 2rem;
+
+    top: 0px;
+    left: 99% !important;
+    background-color: indianred;
+    padding: 0px 8px;
+    height: 100%;
+    border-bottom-right-radius: 10px;
+
+    z-index: 1003;
+    transition: all 0.3s;
+    box-shadow: -5px -1px 4px 0px rgba(0, 0, 0, 0.12);
+  }
+
+  .SideMenu .toggleMenu > span {
+    display: inline-block;
+  }
+
+  .SideMenu#hidden .toggleMenu {
+    left: 100% !important;
+    border-bottom-right-radius: 10px;
+  }
+
+  .SideMenu#visible {
+    border-radius: 0 !important;
+  }
+
+  .SideMenu#hidden {
+    transform: translate(-100%);
+  }
+
+  .SideMenu#hidden section {
+    display: none;
+  }
+
+  .SideMenu#hidden {
+    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.3);
+    border-bottom-right-radius: 10px !important;
+  }
+
+  .toggleMenu#visible {
+    box-shadow: none;
+    border-radius: 0;
+  }
+
+  .toggleMenu#hidden {
+    border-radius: 0 !important;
+    border-top-left-radius: 10px !important;
+    transform: rotate(-180deg);
+    left: 100%;
+  }
+
+  .Content {
+    margin-left: -8px;
+  }
+
+  .Books {
+    row-gap: 10px;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 155px));
+    gap: 10px;
+  }
+
+  .Header input {
+    margin-left: -4rem;
+  }
+
+  /* CART PAGE */
+  .CartPage {
+    display: grid;
+    grid-template-columns: 60% auto;
+    gap: 10px;
+  }
+
+  .BookList::before {
+    content: 'Your Cart Items';
+    font-size: 2rem;
+    font-weight: 500;
+    color: rgb(209, 78, 78);
+  }
+
+  .Cart {
+    margin-top: 6rem;
+    height: 100vh;
+    grid-column: 1/2;
+  }
+
+  .BookList {
+    margin-top: 0;
+    font-size: 1rem;
+    overflow: visible;
+    padding: 5px;
+  }
+
+  .BookListItem {
+    overflow: hidden;
+  }
+
+  .BookListItem .info {
+    min-width: 80px;
+    max-width: 100px;
+  }
+
+  .BookListItem .info .title {
+    font-size: 1.3rem;
+  }
+  .BookListItem .info .author {
+    font-size: 1rem;
+  }
+
+  .Proceed {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+  }
 }

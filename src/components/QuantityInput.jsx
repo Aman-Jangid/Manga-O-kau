@@ -1,3 +1,9 @@
 export default function QuantityInput(props) {
-  return <div className="QuantityInput">INP</div>;
+  return (
+    <div className="QuantityInput">
+      <button className="decrement">-</button>
+      <input type="number" />
+      <button className="increment">+</button>
+    </div>
+  );
 }

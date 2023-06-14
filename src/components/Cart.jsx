@@ -6,7 +6,7 @@ export default function Cart(props) {
     <div className="CartPage">
       <Header />
       <div className="Cart">
-        <BookList />
+        <BookList cart={props.cart} />
       </div>
       <div className="Proceed">
         <div>

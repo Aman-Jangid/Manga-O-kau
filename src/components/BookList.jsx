@@ -1,14 +1,14 @@
 import BookListItem from './BookListItem';
+import uniqid from 'uniqid';
 
 export default function BookList(props) {
+  const books = props.cart;
+
   return (
     <div className="BookList">
-      <BookListItem num={1} />
-      <BookListItem num={2} />
-      <BookListItem num={3} />
-      <BookListItem num={4} />
-      <BookListItem num={5} />
-      <BookListItem num={6} />
+      {books.map((book) => {
+        return <BookListItem key={uniqid()} bookDetail={book} />;
+      })}
     </div>
   );
 }

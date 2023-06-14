@@ -1,17 +1,22 @@
+import Book from './Book';
+import uniqid from 'uniqid';
+
 export default function Content(props) {
+  const books = props.books;
+
   return (
     <div className="Content">
       <ul className="Books">
-        <li>book1</li>
-        <li>book2</li>
-        <li>book3</li>
-        <li>book4</li>
-        <li>book5</li>
-        <li>book6</li>
-        <li>book7</li>
-        <li>book8</li>
-        <li>book9</li>
-        <li>book10</li>
+        {books.map((book) => (
+          <Book
+            setCart={props.setCart}
+            title={book.title}
+            author={book.authors[0].name.split(',').join(' ')}
+            chapters={book.chapters}
+            image={book.images.jpg.large_image_url}
+            key={uniqid()}
+          />
+        ))}
       </ul>
     </div>
   );

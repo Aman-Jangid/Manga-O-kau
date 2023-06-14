@@ -6,7 +6,7 @@ import Router from './Router.jsx';
 import Header from './components/Header.jsx';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <Router />
-  </React.StrictMode>
+  // <React.StrictMode>
+  <Router />
+  // </React.StrictMode>
 );

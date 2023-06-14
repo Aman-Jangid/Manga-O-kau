@@ -1,3 +1,18 @@
 export default function BookListItem(props) {
-  return <div className="BookListItem">Book {props.num}</div>;
+  const book = props.bookDetail;
+  return (
+    <div className="BookListItem">
+      <div className="cover">
+        <img width={'40px'} src={book.image} alt={book.title} />
+      </div>
+      <div className="info">
+        <span className="title">{book.title}</span>
+        <span className="author">{book.author}</span>
+      </div>
+      <div className="pricing">
+        <span className="price">{'$13.54'}</span>
+        <button className="remove">Remove</button>
+      </div>
+    </div>
+  );
 }
