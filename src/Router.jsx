@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 
 export default function Router() {
   const [cart, setCart] = useState([]);
+  const [total, setTotal] = useState(315);
 
   useEffect(() => {
     console.log('cart Updated -> ' + cart);
@@ -22,7 +23,7 @@ export default function Router() {
         <Routes>
           <Route index element={<App setCart={setCartItems} cart={cart} />} />
           <Route path="/cart" element={<Cart cart={cart} />} />
-          <Route path="/checkout" element={<Checkout />} />
+          <Route path="/checkout" element={<Checkout total={total} />} />
         </Routes>
       </BrowserRouter>
     </>

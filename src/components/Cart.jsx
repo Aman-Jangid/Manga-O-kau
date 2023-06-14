@@ -1,6 +1,6 @@
+import { Link } from 'react-router-dom';
 import BookList from './BookList';
 import Header from './Header';
-
 export default function Cart(props) {
   return (
     <div className="CartPage">
@@ -10,7 +10,9 @@ export default function Cart(props) {
       </div>
       <div className="Proceed">
         <div>
-          <button>Proceed To Checkout</button>
+          <Link to="/checkout">
+            <button>Proceed To Checkout</button>
+          </Link>
           <button>Clear Cart</button>
         </div>
         <div>
