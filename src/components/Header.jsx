@@ -10,10 +10,27 @@ export default function Header(props) {
           textDecoration: 'none',
           color: '#fff',
           fontWeight: 600,
-          fontSize: '1.7rem',
+          fontSize: '1.8rem',
         }}
       >
-        Manga<span style={{ color: 'lightsalmon', fontSize: '2rem' }}>𐌏</span>
+        Manga
+        <span
+          style={{
+            color: 'lightsalmon',
+            fontSize: '2rem',
+          }}
+        >
+          <img
+            height={'17px'}
+            style={{
+              filter: 'hue-rotate(163deg) brightness(1.7)',
+              transform: 'rotate(260deg)',
+            }}
+            src={
+              'https://www.freeiconspng.com/thumbs/load-icon-png/load-icon-png-10.png'
+            }
+          />
+        </span>
         kau
       </Link>
       <input
@@ -21,6 +38,7 @@ export default function Header(props) {
         name="searchBar"
         id="search"
         style={{ background: 'salmon', outline: 'none' }}
+        placeholder="Search"
       />
       <div className=" cart">
         <Link to="/cart" className="material-symbols-outlined cartIcon">

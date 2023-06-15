@@ -11,6 +11,13 @@ body {
   display: none;
 }
 
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  appearance: none;
+  margin: 0;
+}
+
 .App {
   overflow-x: hidden;
 
@@ -38,6 +45,12 @@ body {
 .Header .logo,
 .cart {
   margin: 0 10px;
+}
+
+input::placeholder {
+  color: indianred;
+  font-size: 1.4rem;
+  font-weight: 600;
 }
 
 .Header input {
@@ -148,6 +161,7 @@ body {
   max-width: 160px;
   height: max-content;
   position: relative;
+  user-select: none;
 }
 
 .Book img {
@@ -223,6 +237,7 @@ body {
 }
 
 .QuantityInput input {
+  outline: none;
   width: 100%;
   height: 20px;
   border: none;
@@ -250,6 +265,12 @@ body {
 }
 
 .BookList {
+  color: rgb(211, 52, 52);
+  font-weight: 600;
+  background-color: sandybrown;
+  height: max-content;
+  border-radius: 6px;
+  padding: 5px;
   margin-top: 6rem;
   width: 100%;
 
@@ -388,7 +409,7 @@ body {
 .PayPanel {
   width: max-content;
   height: max-content;
-  padding: 100px 10px;
+  padding: 100px 30px;
   border-radius: 10px;
   color: #fff;
   background: indianred;
@@ -424,14 +445,39 @@ body {
   text-decoration: none;
 }
 
-.buttons button {
+.buttons button,
+.buttons .cancel {
+  text-decoration: none;
   border-radius: 6px;
   border: none;
   padding: 5px 10px;
-
+  background-color: #fff;
   color: #222;
   font-weight: 500;
   font-size: 1.6rem;
+}
+
+.buttons Link {
+  background-color: #fff;
+}
+
+.orderSuccess {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px;
+}
+
+.orderSuccess span:first-child {
+  font-size: 3rem;
+  font-weight: 600;
+}
+
+.orderSuccess span:last-child {
+  font-size: 1.2rem;
+  text-align: center;
 }
 
 @media screen and (max-width: 400px) {
@@ -563,5 +609,16 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
+  }
+
+  .PayPanel {
+    max-width: 80lvw;
+  }
+
+  .orderSuccess {
+    padding: 0;
+  }
+  .orderSuccess span:first-child {
+    font-size: 150%;
   }
 }

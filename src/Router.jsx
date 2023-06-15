@@ -9,8 +9,12 @@ export default function Router() {
   const [total, setTotal] = useState(315);
 
   useEffect(() => {
-    console.log('cart Updated -> ' + cart);
+    setCart(cart);
   }, [cart]);
+
+  fetch('../public/data.json')
+    .then((res) => res.json())
+    .then((data) => console.log(data));
 
   const setCartItems = (item) => {
     const newArr = [...cart, item];

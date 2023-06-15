@@ -10,7 +10,7 @@ export default function BookListItem(props) {
         <span className="author">{book.author}</span>
       </div>
       <div className="pricing">
-        <span className="price">{'$13.54'}</span>
+        <span className="price">${book.price}</span>
         <button className="remove">Remove</button>
       </div>
     </div>

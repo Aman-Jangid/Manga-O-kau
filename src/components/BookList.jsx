@@ -6,9 +6,11 @@ export default function BookList(props) {
 
   return (
     <div className="BookList">
-      {books.map((book) => {
-        return <BookListItem key={uniqid()} bookDetail={book} />;
-      })}
+      {props.cart.length === 0
+        ? 'Your cart is empty'
+        : books.map((book) => {
+            return <BookListItem key={uniqid()} bookDetail={book} />;
+          })}
     </div>
   );
 }

@@ -1,6 +1,9 @@
+import { useEffect, useState } from 'react';
 import QuantityInput from './QuantityInput';
 
 export default function Book(props) {
+  const [quantity, setQuantity] = useState();
+
   // TODO
   //  ***************************************************
   // if an item is already in cart then don't add it again
@@ -11,7 +14,19 @@ export default function Book(props) {
       author: props.author,
       chaptersInCart: 5,
       image: props.image,
+      price: props.price,
+      quantity: quantity,
     });
+
+    setQuantity(1);
+  };
+
+  useEffect(() => {
+    setQuantity(quantity);
+  }, [quantity]);
+
+  const quantitySetter = (value) => {
+    setQuantity(value);
   };
 
   return (
@@ -28,7 +43,22 @@ export default function Book(props) {
       <span className="author">by {props.author}</span>
       <br />
       <span className="chapters">length : {props.chapters}</span>
-      <QuantityInput />
+      <span
+        style={{
+          position: 'absolute',
+          right: '1px',
+          color: '#eee',
+          fontSize: '1.6rem',
+          bottom: '7.2%',
+          padding: '0px 3px',
+          background: 'indianred',
+          borderTopLeftRadius: '10px',
+        }}
+        className="price"
+      >
+        ${props.price}
+      </span>
+      <QuantityInput setQuantity={quantitySetter} />
     </div>
   );
 }

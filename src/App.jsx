@@ -17,6 +17,8 @@ function App(props) {
     getData();
   }, []);
 
+  console.log(props, data);
+
   return (
     <div className="App">
       <Header cartCount={props.cart.length} />
