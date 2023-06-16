@@ -12,10 +12,6 @@ export default function Router() {
     setCart(cart);
   }, [cart]);
 
-  fetch('../public/data.json')
-    .then((res) => res.json())
-    .then((data) => console.log(data));
-
   const setCartItems = (item) => {
     const newArr = [...cart, item];
     setCart([...newArr]);

@@ -4,8 +4,6 @@ import uniqid from 'uniqid';
 export default function Content(props) {
   const books = props.books;
 
-  console.log(props);
-
   return (
     <div className="Content">
       <ul className="Books">
@@ -19,9 +17,9 @@ export default function Content(props) {
             <Book
               setCart={props.setCart}
               title={book.title}
-              author={book.author}
-              chapters={book.chapters ? '0' : '1'}
-              image={book.image}
+              author={book.authors[0].name.split(',').reverse().join(' ')}
+              chapters={book.volumes ? book.volumes + ' volumes' : 'ongoing'}
+              image={book.images.webp.image_url}
               price={price}
               key={uniqid()}
             />

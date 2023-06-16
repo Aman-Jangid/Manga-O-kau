@@ -16,7 +16,7 @@ export default function Cart(props) {
       <div className="Cart">
         <BookList cart={props.cart} />
       </div>
-      <div className="Proceed">
+      <div className="Proceed" style={{ padding: '10px' }}>
         <div>
           <Link to="/checkout">
             <button>Proceed To Checkout</button>

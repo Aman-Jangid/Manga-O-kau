@@ -1,6 +1,10 @@
 import { Link } from 'react-router-dom';
 
 export default function Header(props) {
+  const onChangeHandler = (e) => {
+    props.search(e.target.value);
+  };
+
   return (
     <div className="Header">
       <Link
@@ -38,6 +42,7 @@ export default function Header(props) {
         name="searchBar"
         id="search"
         style={{ background: 'salmon', outline: 'none' }}
+        onChange={(e) => onChangeHandler(e)}
         placeholder="Search"
       />
       <div className=" cart">

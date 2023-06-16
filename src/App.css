@@ -18,6 +18,20 @@ input[type='number']::-webkit-outer-spin-button {
   margin: 0;
 }
 
+section {
+  color: #111;
+}
+
+ul {
+  overflow: visible;
+}
+
+.tag {
+  text-decoration: none;
+  display: block;
+  color: #333;
+}
+
 .App {
   overflow-x: hidden;
 
@@ -143,7 +157,7 @@ input::placeholder {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(140px, 175px));
   grid-template-rows: auto;
-  /* gap: 10px; */
+  gap: 10px;
 }
 
 .Books li {
@@ -158,7 +172,7 @@ input::placeholder {
   border-radius: 10px;
   overflow: hidden;
   min-width: 100px;
-  max-width: 160px;
+  max-width: 180px;
   height: max-content;
   position: relative;
   user-select: none;
@@ -172,13 +186,14 @@ input::placeholder {
 .Book span {
   color: #222;
   margin-left: 5px;
-  text-overflow: ellipsis;
 }
 
 /* title */
 .Book span:nth-child(3) {
   font-weight: 500;
+  font-size: 1.4rem;
 }
+
 /* author */
 .Book span:nth-child(5) {
   font-size: 1.2rem;

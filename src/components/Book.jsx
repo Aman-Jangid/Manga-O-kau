@@ -42,7 +42,7 @@ export default function Book(props) {
       <br />
       <span className="author">by {props.author}</span>
       <br />
-      <span className="chapters">length : {props.chapters}</span>
+      <span className="chapters">{props.chapters}</span>
       <span
         style={{
           position: 'absolute',
