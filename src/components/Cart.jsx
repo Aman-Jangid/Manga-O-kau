@@ -12,7 +12,7 @@ export default function Cart(props) {
 
   return (
     <div className="CartPage">
-      <Header />
+      <Header disableSearch={props.disableSearch} />
       <div className="Cart">
         <BookList cart={props.cart} />
       </div>

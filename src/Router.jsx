@@ -22,7 +22,10 @@ export default function Router() {
       <BrowserRouter>
         <Routes>
           <Route index element={<App setCart={setCartItems} cart={cart} />} />
-          <Route path="/cart" element={<Cart cart={cart} />} />
+          <Route
+            path="/cart"
+            element={<Cart cart={cart} disableSearch={true} />}
+          />
           <Route path="/checkout" element={<Checkout total={total} />} />
         </Routes>
       </BrowserRouter>

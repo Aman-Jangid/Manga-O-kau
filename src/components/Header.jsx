@@ -37,14 +37,18 @@ export default function Header(props) {
         </span>
         kau
       </Link>
-      <input
-        type="text"
-        name="searchBar"
-        id="search"
-        style={{ background: 'salmon', outline: 'none' }}
-        onChange={(e) => onChangeHandler(e)}
-        placeholder="Search"
-      />
+      {props.disableSearch ? (
+        <div></div>
+      ) : (
+        <input
+          type="text"
+          name="searchBar"
+          id="search"
+          style={{ background: 'salmon', outline: 'none' }}
+          onChange={(e) => onChangeHandler(e)}
+          placeholder="Search title or author"
+        />
+      )}
       <div className=" cart">
         <Link to="/cart" className="material-symbols-outlined cartIcon">
           local_mall
