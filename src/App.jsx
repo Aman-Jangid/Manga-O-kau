@@ -8,6 +8,7 @@ import fetchData from './fetch';
 function App(props) {
   const [data, setData] = useState([]);
   const [filteredBooks, setFilteredBooks] = useState([]);
+  const [filterAppliedBooks, setfilterAppliedBooks] = useState([]);
 
   const setPrice = () => {
     return (
@@ -42,11 +43,39 @@ function App(props) {
     setFilteredBooks([...books]);
   };
 
+  // filter stuff
+  const filterBooks = (filters, sections) => {
+    const filteredData = [];
+    setfilterAppliedBooks(
+      filterAppliedBooks.length === 0 ? filteredBooks : filterAppliedBooks
+    );
+    console.log(filterAppliedBooks);
+
+    const regex = new RegExp(
+      `(?=.*${Array.from(filters).join(')(?=.*')})`,
+      'gi'
+    );
+
+    filteredBooks.forEach((manga) => {
+      const genresString = manga.genres.map((genre) => genre.name).join(' ');
+
+      if (regex.test(genresString)) {
+        filteredData.push(manga);
+      }
+    });
+    setfilterAppliedBooks(filteredData);
+  };
+
   return (
     <div className="App">
       <Header cartCount={props.cart.length} search={search} />
-      <SideMenu />
-      <Content books={filteredBooks} setCart={props.setCart} />
+      <SideMenu setFilter={filterBooks} />
+      <Content
+        books={
+          filterAppliedBooks.length === 0 ? filteredBooks : filterAppliedBooks
+        }
+        setCart={props.setCart}
+      />
     </div>
   );
 }

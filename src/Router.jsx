@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 
 export default function Router() {
   const [cart, setCart] = useState([]);
+  let totalPrice = 0;
 
   useEffect(() => {
     setCart(cart);
@@ -25,8 +26,6 @@ export default function Router() {
     newCart.splice(index, 1);
     setCart([...newCart]);
   };
-
-  let totalPrice = 0;
 
   if (cart.length !== 0) {
     const Prices = cart.map((item) => +item.price);
