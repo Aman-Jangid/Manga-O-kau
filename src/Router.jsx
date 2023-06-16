@@ -6,7 +6,6 @@ import { useEffect, useState } from 'react';
 
 export default function Router() {
   const [cart, setCart] = useState([]);
-  const [total, setTotal] = useState(315);
 
   useEffect(() => {
     setCart(cart);
@@ -17,6 +16,24 @@ export default function Router() {
     setCart([...newArr]);
   };
 
+  const clearCart = () => {
+    setCart([]);
+  };
+
+  const removeCartItem = (index) => {
+    const newCart = [...cart];
+    newCart.splice(index, 1);
+    setCart([...newCart]);
+  };
+
+  let totalPrice = 0;
+
+  if (cart.length !== 0) {
+    const Prices = cart.map((item) => +item.price);
+    const total = Prices.reduce((acc, curr) => acc + curr);
+    totalPrice = total;
+  }
+
   return (
     <>
       <BrowserRouter>
@@ -24,9 +41,17 @@ export default function Router() {
           <Route index element={<App setCart={setCartItems} cart={cart} />} />
           <Route
             path="/cart"
-            element={<Cart cart={cart} disableSearch={true} />}
+            element={
+              <Cart
+                cart={cart}
+                removeCartItem={removeCartItem}
+                setCart={clearCart}
+                disableSearch={true}
+                total={totalPrice}
+              />
+            }
           />
-          <Route path="/checkout" element={<Checkout total={total} />} />
+          <Route path="/checkout" element={<Checkout total={totalPrice} />} />
         </Routes>
       </BrowserRouter>
     </>

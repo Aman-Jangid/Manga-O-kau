@@ -1,5 +1,6 @@
 export default function BookListItem(props) {
   const book = props.bookDetail;
+
   return (
     <div className="BookListItem">
       <div className="cover">
@@ -11,7 +12,9 @@ export default function BookListItem(props) {
       </div>
       <div className="pricing">
         <span className="price">${book.price}</span>
-        <button className="remove">Remove</button>
+        <button className="remove" onClick={() => props.remove(props.index)}>
+          Remove
+        </button>
       </div>
     </div>
   );

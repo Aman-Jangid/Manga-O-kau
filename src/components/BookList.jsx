@@ -8,8 +8,15 @@ export default function BookList(props) {
     <div className="BookList">
       {props.cart.length === 0
         ? 'Your cart is empty'
-        : books.map((book) => {
-            return <BookListItem key={uniqid()} bookDetail={book} />;
+        : books.map((book, i) => {
+            return (
+              <BookListItem
+                key={uniqid()}
+                index={i}
+                bookDetail={book}
+                remove={props.remove}
+              />
+            );
           })}
     </div>
   );

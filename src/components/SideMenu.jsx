@@ -19,25 +19,17 @@ export default function SideMenu(props) {
           <span className="toggleMenuIcon">➤</span>
         </div>
 
-        <section className="filters">
-          Filters
-          <ul style={{ height: '80px', overflow: 'scroll' }}>
-            By Length
-            <br />
-            <Link className="tag">One-shot</Link>
-            <Link className="tag">Short</Link>
-            <Link className="tag">Long</Link>
-          </ul>
+        <section className="Filter">
           <ul>
-            By Year
+            Filter by Year
             <Link className="tag">before 2000</Link>
             <Link className="tag">2000-2010</Link>
             <Link className="tag">2010-now</Link>
           </ul>
         </section>
         <section className="Categories">
-          Categories
-          <ul style={{ height: '70px', overflow: 'scroll' }}>
+          <ul>
+            Categories
             <Link className="tag">Action</Link>
             <Link className="tag">Adventure</Link>
             <Link className="tag">Comedy</Link>
@@ -54,9 +46,9 @@ export default function SideMenu(props) {
             <Link className="tag">Psychological</Link>
           </ul>
         </section>
-        <section className="Author">
-          Demographic
-          <ul style={{ height: '70px', overflow: 'scroll' }}>
+        <section className="Demographic">
+          <ul>
+            Demographic
             <Link className="tag">Shounen</Link>
             <Link className="tag">Shoujo</Link>
             <Link className="tag">Seinen</Link>

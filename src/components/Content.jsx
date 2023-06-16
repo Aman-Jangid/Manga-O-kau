@@ -8,11 +8,6 @@ export default function Content(props) {
     <div className="Content">
       <ul className="Books">
         {books.map((book) => {
-          const price =
-            Math.floor(Math.random() * (15 - 5) + 5) +
-            '.' +
-            Math.floor(Math.random() * 40);
-
           return (
             <Book
               setCart={props.setCart}
@@ -20,7 +15,7 @@ export default function Content(props) {
               author={book.authors[0].name.split(',').reverse().join(' ')}
               chapters={book.volumes ? book.volumes + ' volumes' : 'ongoing'}
               image={book.images.webp.image_url}
-              price={price}
+              price={book.price}
               key={uniqid()}
             />
           );

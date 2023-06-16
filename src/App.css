@@ -61,6 +61,14 @@ ul {
   margin: 0 10px;
 }
 
+.Header .logo {
+  display: flex;
+}
+
+.Header .logo img {
+  height: 1.7rem;
+}
+
 input::placeholder {
   color: indianred;
   font-size: 1.4rem;
@@ -72,6 +80,9 @@ input::placeholder {
   width: 35vw;
   padding: 5px;
   border-radius: 10px;
+  color: rgb(117, 64, 64);
+  font-size: 1.4rem;
+  font-weight: 600;
 }
 
 .Header .cart {
@@ -115,17 +126,13 @@ input::placeholder {
 
   background: salmon;
 
-  height: 80%;
+  height: 85%;
   width: 12%;
   min-width: 163px;
   border-bottom-right-radius: 15px;
 
   display: flex;
   flex-direction: column;
-  align-items: start;
-  justify-content: space-evenly;
-  padding: 0 0 0 10px;
-  gap: 10px;
 
   opacity: 100;
   box-shadow: -2px 7px 4px 0px rgba(0, 0, 0, 0.12);
@@ -136,6 +143,16 @@ input::placeholder {
   width: 100%;
   height: 100%;
   border-bottom-right-radius: 15px;
+  padding: 10px 0 0 10px;
+
+  font-size: 1.4rem;
+}
+
+.SideMenu .Filter {
+  flex: 0;
+}
+.SideMenu .Categories {
+  flex: 1;
 }
 
 .SideMenu .toggleMenu > span {
@@ -144,6 +161,29 @@ input::placeholder {
 
 .toggleMenu {
   opacity: 100;
+}
+
+.SideMenu ul {
+  margin: 0;
+  padding: 1px;
+  width: 85%;
+
+  color: rgb(186, 72, 72);
+  font-weight: bold;
+}
+
+.SideMenu .tag {
+  background-color: indianred;
+  color: #ddd;
+  font-weight: bold;
+  padding: 1px;
+  border-radius: 4px;
+  margin: 1px 0;
+}
+
+.SideMenu .tag.active,
+.tag:focus {
+  background-color: sandybrown;
 }
 
 /**************** CONTENT *************/
@@ -407,6 +447,14 @@ input::placeholder {
   height: 7rem;
 }
 
+.totalCart {
+  width: max-content;
+  padding: 2px;
+  color: #333;
+  font-size: 2rem;
+  font-weight: 600;
+}
+
 /*********** CHECKOUT ***********/
 
 .Checkout {
@@ -504,6 +552,14 @@ input::placeholder {
     overflow: auto;
   }
 
+  .SideMenu {
+    height: 70vh;
+  }
+
+  .SideMenu li {
+    background: red !important;
+  }
+
   .toggleMenu {
     visibility: visible;
     opacity: 1;
@@ -515,7 +571,7 @@ input::placeholder {
     left: 99% !important;
     background-color: indianred;
     padding: 0px 8px;
-    height: 100%;
+    height: 25px;
     border-bottom-right-radius: 10px;
 
     z-index: 1003;
@@ -549,12 +605,15 @@ input::placeholder {
     border-bottom-right-radius: 10px !important;
   }
 
-  .toggleMenu#visible {
+  .toggleMenu#visible,
+  .Header {
+    box-shadow: 1px 3.3px 4px 0px rgba(0, 0, 0, 0.3) !important;
     box-shadow: none;
     border-radius: 0;
   }
 
   .toggleMenu#hidden {
+    height: 100%;
     border-radius: 0 !important;
     border-top-left-radius: 10px !important;
     transform: rotate(-180deg);
@@ -562,7 +621,7 @@ input::placeholder {
   }
 
   .Content {
-    margin-left: -8px;
+    margin-left: -5px;
   }
 
   .Books {
@@ -571,8 +630,22 @@ input::placeholder {
     gap: 10px;
   }
 
+  .Book .price {
+    bottom: 2.9rem !important;
+  }
+
+  .Header .logo {
+    display: flex;
+  }
+
+  .Header .logo img {
+    height: 1.7rem;
+  }
+
   .Header input {
     margin-left: -4rem;
+    text-align: center;
+    font-size: 1.5rem;
   }
 
   /* CART PAGE */
