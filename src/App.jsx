@@ -11,7 +11,6 @@ function App(props) {
   const [searchedBooks, setSearchedBooks] = useState([]);
   const [filters, setFilters] = useState(new Set());
 
-  // const [filtering, setFiltering] = useState(false);
   const [searching, setSearching] = useState(false);
 
   const setPrice = () => {
@@ -42,7 +41,6 @@ function App(props) {
     const books = [];
     const regex = new RegExp(`${query}`, 'gi');
     data.forEach((manga) => {
-      console.log(manga);
       if (regex.test(manga.title) || regex.test(manga.authors[0].name)) {
         books.push(manga);
       }

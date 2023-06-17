@@ -16,6 +16,7 @@ export default function Content(props) {
               chapters={book.volumes ? book.volumes + ' volumes' : 'ongoing'}
               image={book.images.webp.image_url}
               price={book.price}
+              quantity={1}
               key={uniqid()}
             />
           );

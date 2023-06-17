@@ -2,17 +2,13 @@ import { useEffect, useState } from 'react';
 import QuantityInput from './QuantityInput';
 
 export default function Book(props) {
-  const [quantity, setQuantity] = useState();
-
-  // TODO
-  //  ***************************************************
-  // if an item is already in cart then don't add it again
+  const [quantity, setQuantity] = useState(1);
 
   const cartClickHandle = () => {
     props.setCart({
       title: props.title,
       author: props.author,
-      chaptersInCart: 5,
+      chaptersInCart: 1,
       image: props.image,
       price: props.price,
       quantity: quantity,

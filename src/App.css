@@ -71,7 +71,7 @@ ul {
 
 input::placeholder {
   color: indianred;
-  font-size: 1.4rem;
+  font-size: 1.5rem;
   font-weight: 600;
 }
 
@@ -642,10 +642,14 @@ input::placeholder {
     height: 1.7rem;
   }
 
+  input::placeholder {
+    font-size: 1.5rem;
+  }
+
   .Header input {
     margin-left: -4rem;
     text-align: center;
-    font-size: 1.5rem;
+    font-size: 1.6rem;
   }
 
   /* CART PAGE */

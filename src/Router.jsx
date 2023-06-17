@@ -8,6 +8,11 @@ export default function Router() {
   const [cart, setCart] = useState([]);
   let totalPrice = 0;
 
+  // welcome
+  useEffect(() => {
+    console.log('sup 👋');
+  }, []);
+
   useEffect(() => {
     setCart(cart);
   }, [cart]);
@@ -28,7 +33,7 @@ export default function Router() {
   };
 
   if (cart.length !== 0) {
-    const Prices = cart.map((item) => +item.price);
+    const Prices = cart.map((item) => +item.price * item.quantity);
     const total = Prices.reduce((acc, curr) => acc + curr);
     totalPrice = total;
   }
