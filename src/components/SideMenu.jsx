@@ -2,12 +2,21 @@ import { useEffect, useState } from 'react';
 
 export default function SideMenu(props) {
   const [isMenuVisible, setIsMenuVisible] = useState(false);
+  const [filterList, setFilterList] = useState(new Set());
+
+  useEffect(() => {
+    sendFilters(filterList);
+  }, [filterList]);
 
   const handleClick = () => {
     setIsMenuVisible(!isMenuVisible);
   };
 
-  const categoriesSet = new Set();
+  let removed;
+
+  const sendFilters = (filterList) => {
+    props.setFilters(filterList);
+  };
 
   const setFilter = (e) => {
     let target = e.target;
@@ -19,13 +28,14 @@ export default function SideMenu(props) {
       !target.parentElement.parentElement.classList.contains('App') &&
       !target.parentElement.parentElement.classList.contains('SideMenu')
     ) {
-      categoriesSet.add(target.textContent);
-      // sectionsSet.add(target.parentElement.parentElement.classList[0]);
+      setFilterList((prevFilters) => [...prevFilters, target.textContent]);
     } else {
-      categoriesSet.delete(target.textContent);
-      // sectionsSet.delete(target.textContent);
+      removed = target.textContent;
+
+      const newArr = new Set([...filterList]);
+      newArr.delete(removed);
+      setFilterList(newArr);
     }
-    props.setFilter(categoriesSet, []);
   };
 
   return (

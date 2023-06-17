@@ -8,7 +8,11 @@ import fetchData from './fetch';
 function App(props) {
   const [data, setData] = useState([]);
   const [filteredBooks, setFilteredBooks] = useState([]);
-  const [filterAppliedBooks, setfilterAppliedBooks] = useState([]);
+  const [searchedBooks, setSearchedBooks] = useState([]);
+  const [filters, setFilters] = useState(new Set());
+
+  // const [filtering, setFiltering] = useState(false);
+  const [searching, setSearching] = useState(false);
 
   const setPrice = () => {
     return (
@@ -22,6 +26,7 @@ function App(props) {
     const getData = async () => {
       const data = await fetchData();
       setData(data);
+      setSearchedBooks(data);
       setFilteredBooks(data);
 
       data.forEach((manga) => (manga.price = setPrice()));
@@ -31,6 +36,9 @@ function App(props) {
   }, []);
 
   const search = (query) => {
+    // set searching to true
+    setSearching(true);
+
     const books = [];
     const regex = new RegExp(`${query}`, 'gi');
     data.forEach((manga) => {
@@ -40,40 +48,46 @@ function App(props) {
       }
     });
 
-    setFilteredBooks([...books]);
+    setSearchedBooks([...books]);
+  };
+
+  useEffect(() => {
+    // call filtering function
+    filterBooks(filters);
+  }, [filters]);
+
+  const setFiltersSet = (filter) => {
+    setFilters(filter);
   };
 
   // filter stuff
-  const filterBooks = (filters, sections) => {
-    const filteredData = [];
-    setfilterAppliedBooks(
-      filterAppliedBooks.length === 0 ? filteredBooks : filterAppliedBooks
-    );
-    console.log(filterAppliedBooks);
+  const filterBooks = (filters) => {
+    // set searching to false
+    setSearching(false);
 
+    const filteredData = [];
     const regex = new RegExp(
       `(?=.*${Array.from(filters).join(')(?=.*')})`,
       'gi'
     );
 
-    filteredBooks.forEach((manga) => {
+    data.forEach((manga) => {
       const genresString = manga.genres.map((genre) => genre.name).join(' ');
 
       if (regex.test(genresString)) {
         filteredData.push(manga);
       }
     });
-    setfilterAppliedBooks(filteredData);
+
+    setFilteredBooks([...filteredData]);
   };
 
   return (
     <div className="App">
       <Header cartCount={props.cart.length} search={search} />
-      <SideMenu setFilter={filterBooks} />
+      <SideMenu setFilters={setFiltersSet} />
       <Content
-        books={
-          filterAppliedBooks.length === 0 ? filteredBooks : filterAppliedBooks
-        }
+        books={searching ? searchedBooks : filteredBooks}
         setCart={props.setCart}
       />
     </div>
