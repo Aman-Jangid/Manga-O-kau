@@ -56,6 +56,10 @@ ul {
   align-items: center;
 }
 
+.searchResults {
+  display: none;
+}
+
 .Header .logo,
 .cart {
   margin: 0 10px;
@@ -550,6 +554,10 @@ input::placeholder {
 
   body {
     overflow: auto;
+  }
+
+  .searchResults {
+    display: block;
   }
 
   .SideMenu {

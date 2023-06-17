@@ -82,7 +82,13 @@ function App(props) {
 
   return (
     <div className="App">
-      <Header cartCount={props.cart.length} search={search} />
+      <Header
+        cartCount={props.cart.length}
+        search={search}
+        results={
+          filteredBooks.length === data.length ? null : filteredBooks.length
+        }
+      />
       <SideMenu setFilters={setFiltersSet} />
       <Content
         books={searching ? searchedBooks : filteredBooks}

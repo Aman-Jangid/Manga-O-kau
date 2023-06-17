@@ -5,8 +5,29 @@ export default function Header(props) {
     props.search(e.target.value);
   };
 
+  const styles = {
+    display: props.results === null ? 'none' : 'block',
+    position: 'absolute',
+    right: '0',
+    top: '12rem',
+    border: '2px solid #eee',
+    borderRight: 'none',
+    background: 'indianred',
+    color: '#eee',
+    fontWeight: '600',
+    padding: '3px 5px',
+    boxShadow: '0px 0px 4px 0px rgba(0,0,0,0.3)',
+    borderRadius: '10px',
+    marginLeft: '3px',
+    borderBottomRightRadius: '0px',
+    borderTopRightRadius: '0px',
+  };
+
   return (
     <div className="Header">
+      <div className="searchResults" style={styles}>
+        Results : {props.results}
+      </div>
       <Link
         to="/"
         className="logo"
